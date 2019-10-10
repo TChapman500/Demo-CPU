@@ -1,0 +1,39 @@
+Chapman CPU	BasicP 1x8Cxxxx
+		[NumCores]x[BusWidth]C[MHz]
+
+NOP	Do Nothing		00000000
+
+LD	Number to ACC		00000001
+OUT	Output to RAM		00000010
+LDR	RAM to ACC		00000011
+MOV	Output to ACC		00000100
+JMP	Unconditional		00000111
+MOV	Number to GPR		00001xxx
+LDR	RAM to GPR		00010xxx
+MOV	Output to GPR		00011xxx
+MOV	GPR to ACC		00100xxx
+OUT	GPR to RAM		00101xxx
+JNE	If A != B		00110000
+JL	If A < B		00110001
+JG	If A > B		00110010
+JE	If A == B		00110011
+JC	If Overflow		00110100
+JB	If Underflow		00110101
+JF	If False		00110110
+JT	If True			00110111
+
+ADD	GPR and ACC		10001xxx
+SUB	GPR and ACC		10010xxx
+NEG	GPR			10011xxx
+INC	GPR			10100xxx
+DEC	GPR			10101xxx
+MUL	GPR and ACC		10110xxx
+AND	GPR and ACC		10111xxx
+NAND	GPR and ACC		11000xxx
+OR	GPR and ACC		11001xxx
+NOR	GPR and ACC		11010xxx
+NOT	GPR			11011xxx
+XOR	GPR and ACC		11100xxx
+SHR	GPR and ACC		11101xxx
+SHL	GPR and ACC		11110xxx
+CMP	GPR and ACC		11111xxx
