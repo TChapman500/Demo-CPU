@@ -1,3 +1,4 @@
+```
 Chapman CPU	BasicP 1x8Cxxxx
 		[NumCores]x[BusWidth]C[MHz]
 
@@ -89,3 +90,4 @@ Chapman CPU	BasicP 1x8Cxxxx
 | |1110|   |	Shift Left
 | |1111|   |	Compare
 +-+----+---+
+```
