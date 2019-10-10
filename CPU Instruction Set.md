@@ -9,7 +9,7 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `LDR acc, [imm16]` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
 | `MOV acc, out` | Copies the contents of the output register to the accumulator. | `00000100` |
 | `JMP imm16` | Unconditional jump to specified address. | `00000111` |
-| `MOV rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
+| `LD rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
 | `LDR rX, [imm16]` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
 | `MOV rX, out` | Copies the contents of the output register to the specified GPR. | `00011xxx` |
 | `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
