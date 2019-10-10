@@ -1,6 +1,4 @@
-Chapman CPU	BasicP 1x8Cxxxx
-		[NumCores]x[BusWidth]C[MHz]
-
+# Demo CPU
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.
 
 | Instruction | Description | Opcode |
