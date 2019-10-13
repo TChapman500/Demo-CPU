@@ -14,20 +14,21 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `MOV rX, out` | Copies the contents of the output register to the specified GPR. | `00011xxx` |
 | `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
 | `ST imm16, rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
-| `JNE imm16` | Jumps to the specified RAM address if `A != B`. | `00110000` |
-| `JL imm16` | Jumps to the specified RAM address if `A < B`. | `00110001` |
-| `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110010` |
-| `JE imm16` | Jumps to the specified RAM address if `A == B`. | `00110011` |
-| `JC imm16` | Jumps to the specified RAM address if `ADD` or `MUL` overflows. | `00110100` |
-| `JB imm16` | Jumps to the specified RAM address if `SUB` was performed with `A < B`.  | `00110101` |
-| `JF imm16` | Jumps to the specified RAM address if `A == 0`. | `00110110` |
-| `JT imm16` | Jumps to the specified RAM address if `A == 1`. | `00110111` |
+| `JNE/JNZ imm16` | Jumps to the specified RAM address if the zero flag is cleared/if `A != B`. | `00110000` |
+| `JL/JC imm16` | Jumps to the specified RAM address if the carry flag is set/if `A < B`. | `00110001` |
+| `JNL/JNC imm16` | Jumps to the specified RAM address if the carry flag is cleared/if `A >= B`. | `00110010` |
+| `JE/JZ imm16` | Jumps to the specified RAM address if the zero flag is set/if `A == B`. | `00110011` |
+| `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110100` |
+| `JNG imm16` | Jumps to the specified RAM address if `A <= B`.  | `00110101` |
+| `JO imm16` | Jumps to the specified RAM address if `A == 0`. | `00110110` |
+| `JNO imm16` | Jumps to the specified RAM address if `A == 1`. | `00110111` |
+| `ADC rX` | Adds the accumulator and the carry flag to the specified GPR. | `10000xxx` |
 | `ADD rX` | Adds the accumulator to the specified GPR. | `10001xxx` |
 | `SUB rX` | Subtracts the accumulator from the specified GPR.  | `10010xxx` |
 | `NEG rX` | Negates the specified GPR. | `10011xxx` |
 | `INC rX` | Increments the specified GPR. | `10100xxx` |
 | `DEC rX` | Decrements the specified GPR. | `10101xxx` |
-| `MUL rX` | Multiplies the accumulator and the specified GPR together.  Only the lower half of the result is stored in the output register.  The upper half of the result is discarded. | `10110xxx` |
+| `MUL rX` | Multiplies the accumulator and the specified GPR together.  Sets the overflow flag if the upper half is greater than 0.  Does not set the carry flag. | `10110xxx` |
 | `AND rX` | Logical AND operation with the accumulator and the specified GPR. | `10111xxx` |
 | `NAND rX` | Logical NAND operation with the accumulator and the specified GPR. | `11000xxx` |
 | `OR rX` | Logical OR operation with the accumulator and the specified GPR. | `11001xxx` |
@@ -36,4 +37,4 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `XOR rX` | Logical XOR operation with the accumulator and the specified GPR. | `11100xxx` |
 | `SHR rX` | Logical shift right of the specified GPR by the amount specified by the accumulator. | `11101xxx` |
 | `SHL rX` | Logical shift left of the specified GPR by the amount specified by the accumulator. | `11110xxx` |
-| `CMP rX` | Unsigned compare of the specified GPR and the accumulator. | `11111xxx` |
+| `SUB rX` | Subtracts the accumulator and the carry flag from the specified GPR.  | `11111xxx` |
