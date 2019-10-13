@@ -8,6 +8,8 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `ST imm16, out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
 | `LDR acc, imm16` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
 | `MOV acc, out` | Copies the contents of the output register to the accumulator. | `00000100` |
+| `MOV acc, outH` | Copies the contents of the upper half of the output register to the accumulator. | `0000101` |
+| `ST imm16, outH` | Copies the contents of the upper half of the output register to the specified RAM address. | `0000110` |
 | `JMP imm16` | Unconditional jump to specified address. | `00000111` |
 | `LD rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
 | `LDR rX, imm16` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
@@ -22,6 +24,7 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `JNG imm16` | Jumps to the specified RAM address if `A <= B`.  | `00110101` |
 | `JO imm16` | Jumps to the specified RAM address if `A == 0`. | `00110110` |
 | `JNO imm16` | Jumps to the specified RAM address if `A == 1`. | `00110111` |
+| `MOV rX, outH` | Copies the contents of the upper half of the output register to the specified GPR. | `00111xxx` |
 | `ADC rX` | Adds the accumulator and the carry flag to the specified GPR. | `10000xxx` |
 | `ADD rX` | Adds the accumulator to the specified GPR. | `10001xxx` |
 | `SUB rX` | Subtracts the accumulator from the specified GPR.  | `10010xxx` |
