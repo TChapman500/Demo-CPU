@@ -1,6 +1,4 @@
-# Enhanced Demo CPU
-This is an enhancement of the restored Demo CPU.  This CPU modifies several of the jump conditions (maintaining backwards compatibility on most of them) and the flags.  It also adds a second output to the ALU for retrieving the upper half of a multiply operation.  You will be able to access this register with `ST imm16, outH`, `MOV acc, outH`, and `MOV rX, outH` instructions.  Two new ALU operations are also included:  `ADC rX` and `SBB rX`, which adds or subtracts the carry flag.
+# Demo CPU
+The absolute original CPU in it's final state after I attempted to add the call and return instructions to the CPU.  Yes, I finally found the original CPU.  This is not a remake of the original, but the original itself!
 
-For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.1+).
-
-DAT files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  PROG files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
+For this CPU to "work", you will need the original [Logisim](http://www.cburch.com/logisim/download.html), as this CPU was made with the original Logisim.  You will also need to download all of the included circuits (or just download the ZIP file).
