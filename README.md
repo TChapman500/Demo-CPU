@@ -28,7 +28,7 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `JC imm16` | Jumps to the specified RAM address if `ADD` or `MUL` overflows. | `00110100` |
 | `JB imm16` | Jumps to the specified RAM address if `SUB` was performed with `A < B`.  | `00110101` |
 | `JF imm16` | Jumps to the specified RAM address if `A == 0`. | `00110110` |
-| `JT imm16` | Jumps to the specified RAM address if `A == 1`. | `00110111` |
+| `JT imm16` | Jumps to the specified RAM address if `A > 0`. | `00110111` |
 | `ADD rX` | Adds the accumulator to the specified GPR. | `10001xxx` |
 | `SUB rX` | Subtracts the accumulator from the specified GPR.  | `10010xxx` |
 | `NEG rX` | Negates the specified GPR. | `10011xxx` |
