@@ -1,46 +1,8 @@
-# Demo CPU
-The absolute original CPU in it's final state after I attempted to add the call and return instructions to the CPU.  Yes, I finally found the original CPU.  This is not a remake of the original, but the original itself!
+# Ehanched Demo CPU
+If you would like to extend the demo CPU, fork this repository and start working on this branch (restored branch).  Once your enhancements are done, create a pull request.
 
-For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.4+).
-
-DAT files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  PROG files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
-
-## Instruction Set
-Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.
-
-| Instruction | Description | Opcode |
-| ----------- | ----------- | ------ |
-| `NOP` | Does nothing. | `00000000` |
-| `LD acc, imm8` | Copies the immediate byte to the accumulator. | `00000001` |
-| `ST imm16, out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
-| `LDR acc, imm16` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
-| `MOV acc, out` | Copies the contents of the output register to the accumulator. | `00000100` |
-| `JMP imm16` | Unconditional jump to specified address. | `00000111` |
-| `LD rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
-| `LDR rX, imm16` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
-| `MOV rX, out` | Copies the contents of the output register to the specified GPR. | `00011xxx` |
-| `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
-| `ST imm16, rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
-| `JNE imm16` | Jumps to the specified RAM address if `A != B`. | `00110000` |
-| `JL imm16` | Jumps to the specified RAM address if `A < B`. | `00110001` |
-| `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110010` |
-| `JE imm16` | Jumps to the specified RAM address if `A == B`. | `00110011` |
-| `JC imm16` | Jumps to the specified RAM address if `ADD` or `MUL` overflows. | `00110100` |
-| `JB imm16` | Jumps to the specified RAM address if `SUB` was performed with `A < B`.  | `00110101` |
-| `JF imm16` | Jumps to the specified RAM address if `A == 0`. | `00110110` |
-| `JT imm16` | Jumps to the specified RAM address if `A > 0`. | `00110111` |
-| `ADD rX` | Adds the accumulator to the specified GPR. | `10001xxx` |
-| `SUB rX` | Subtracts the accumulator from the specified GPR.  | `10010xxx` |
-| `NEG rX` | Negates the specified GPR. | `10011xxx` |
-| `INC rX` | Increments the specified GPR. | `10100xxx` |
-| `DEC rX` | Decrements the specified GPR. | `10101xxx` |
-| `MUL rX` | Multiplies the accumulator and the specified GPR together.  Only the lower half of the result is stored in the output register.  The upper half of the result is discarded. | `10110xxx` |
-| `AND rX` | Logical AND operation with the accumulator and the specified GPR. | `10111xxx` |
-| `NAND rX` | Logical NAND operation with the accumulator and the specified GPR. | `11000xxx` |
-| `OR rX` | Logical OR operation with the accumulator and the specified GPR. | `11001xxx` |
-| `NOR rX` | Logical NOR operation with the accumulator and the specified GPR. | `11010xxx` |
-| `NOT rX` | Logical NOT operation of the specified GPR. | `11011xxx` |
-| `XOR rX` | Logical XOR operation with the accumulator and the specified GPR. | `11100xxx` |
-| `SHR rX` | Logical shift right of the specified GPR by the amount specified by the accumulator. | `11101xxx` |
-| `SHL rX` | Logical shift left of the specified GPR by the amount specified by the accumulator. | `11110xxx` |
-| `CMP rX` | Unsigned compare of the specified GPR and the accumulator. | `11111xxx` |
+## Rules for Pull Requests
+All pull requests for the enhanced CPU will result in the circuit of that pull request being tested against the following rules.  Failing this test will result in a closed pull request.
+1.	Do not make a pull request to the preserved or restored branches.  Only make pull requests to this branch.
+2.	All instructions that you add must be working properly before any pull requests are made.
+3.	The [original instruction set](https://github.com/TChapman500/Demo-CPU/tree/enhanced) must be preserved and functional.
