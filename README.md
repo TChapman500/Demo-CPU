@@ -1,14 +1,14 @@
 # Demo CPU
 The absolute original CPU in it's final state after I attempted to add the call and return instructions to the CPU.  Yes, I finally found the original CPU.  This is not a remake of the original, but the original itself!
 
-For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.1+).
+For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.4+).
 
 DAT files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  PROG files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
 
 ## Instruction Set
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.
 
-| Instruction | Description | Opcode |
+| Instruction    | Description | Opcode |
 | ----------- | ----------- | ------ |
 | `NOP` | Does nothing. | `00000000` |
 | `LD acc, imm8` | Copies the immediate byte to the accumulator. | `00000001` |
