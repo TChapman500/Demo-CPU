@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project source="4.0.1-HC" version="1.0">
+<project source="4.0.4-HC" version="1.0">
   This file is intended to be loaded by Logisim-evolution (https://github.com/kevinawalsh/logisim-evolution).
 
   <lib desc="#Wiring" name="0">
@@ -16,16 +16,6 @@
     <tool name="Bit Extender">
       <a name="out_width" val="3"/>
     </tool>
-    <tool name="Power">
-      <a name="facing" val="west"/>
-    </tool>
-    <tool name="Ground">
-      <a name="facing" val="west"/>
-      <a name="width" val="8"/>
-    </tool>
-    <tool name="Pull Resistor">
-      <a name="facing" val="north"/>
-    </tool>
   </lib>
   <lib desc="#Gates" name="1">
     <tool name="NOT Gate">
@@ -39,7 +29,6 @@
       <a name="width" val="8"/>
     </tool>
     <tool name="NAND Gate">
-      <a name="inputs" val="8"/>
       <a name="size" val="30"/>
     </tool>
     <tool name="NOR Gate">
@@ -106,6 +95,18 @@
     </tool>
   </lib>
   <lib desc="#BFH-Praktika" name="7"/>
+  <lib desc="#Analog" name="8">
+    <tool name="Power">
+      <a name="facing" val="west"/>
+    </tool>
+    <tool name="Ground">
+      <a name="facing" val="west"/>
+      <a name="width" val="8"/>
+    </tool>
+    <tool name="Pull Resistor">
+      <a name="facing" val="north"/>
+    </tool>
+  </lib>
   <main name="CPUCore"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -450,10 +451,6 @@
       <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(460,1400)" name="Power">
-      <a name="facing" val="west"/>
-      <a name="width" val="4"/>
-    </comp>
     <comp lib="1" loc="(1070,80)" name="OR Gate">
       <a name="facing" val="north"/>
       <a name="inputs" val="6"/>
@@ -541,8 +538,8 @@
       <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(700,450)" name="OR Gate">
-      <a name="inputs" val="4"/>
+    <comp lib="1" loc="(700,440)" name="OR Gate">
+      <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
     <comp lib="1" loc="(700,540)" name="AND Gate">
@@ -656,6 +653,10 @@
     </comp>
     <comp lib="3" loc="(500,1390)" name="Comparator">
       <a name="mode" val="unsigned"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="8" loc="(460,1400)" name="Power">
+      <a name="facing" val="west"/>
       <a name="width" val="4"/>
     </comp>
     <comp loc="(260,100)" name="Stepper"/>
@@ -841,8 +842,6 @@
     <wire from="(370,620)" to="(670,620)"/>
     <wire from="(370,660)" to="(370,1450)"/>
     <wire from="(370,660)" to="(670,660)"/>
-    <wire from="(380,460)" to="(380,700)"/>
-    <wire from="(380,460)" to="(670,460)"/>
     <wire from="(380,700)" to="(380,740)"/>
     <wire from="(380,700)" to="(670,700)"/>
     <wire from="(380,740)" to="(380,1450)"/>
@@ -851,8 +850,8 @@
     <wire from="(390,190)" to="(670,190)"/>
     <wire from="(400,200)" to="(400,1450)"/>
     <wire from="(400,200)" to="(670,200)"/>
-    <wire from="(410,470)" to="(410,780)"/>
-    <wire from="(410,470)" to="(670,470)"/>
+    <wire from="(410,450)" to="(410,780)"/>
+    <wire from="(410,450)" to="(670,450)"/>
     <wire from="(410,780)" to="(410,1450)"/>
     <wire from="(410,780)" to="(670,780)"/>
     <wire from="(440,1380)" to="(440,1530)"/>
@@ -936,7 +935,7 @@
     <wire from="(700,260)" to="(730,260)"/>
     <wire from="(700,330)" to="(1050,330)"/>
     <wire from="(700,370)" to="(910,370)"/>
-    <wire from="(700,450)" to="(710,450)"/>
+    <wire from="(700,440)" to="(720,440)"/>
     <wire from="(700,540)" to="(1210,540)"/>
     <wire from="(700,580)" to="(920,580)"/>
     <wire from="(700,620)" to="(1080,620)"/>
@@ -951,8 +950,6 @@
     <wire from="(700,980)" to="(720,980)"/>
     <wire from="(710,180)" to="(710,190)"/>
     <wire from="(710,180)" to="(730,180)"/>
-    <wire from="(710,440)" to="(710,450)"/>
-    <wire from="(710,440)" to="(720,440)"/>
     <wire from="(710,760)" to="(710,780)"/>
     <wire from="(710,760)" to="(720,760)"/>
     <wire from="(710,780)" to="(1560,780)"/>
@@ -1035,21 +1032,9 @@
       <a name="labelloc" val="north"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(240,870)" name="Ground">
-      <a name="facing" val="west"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(270,470)" name="Ground">
-      <a name="facing" val="west"/>
-      <a name="width" val="8"/>
-    </comp>
     <comp lib="0" loc="(280,730)" name="Bit Extender">
       <a name="out_width" val="3"/>
     </comp>
-    <comp lib="0" loc="(480,260)" name="Ground">
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(480,380)" name="Ground"/>
     <comp lib="0" loc="(570,760)" name="Splitter">
       <a name="appear" val="center"/>
       <a name="facing" val="north"/>
@@ -1176,6 +1161,18 @@
       <a name="shift" val="lr"/>
     </comp>
     <comp lib="3" loc="(340,770)" name="Shifter"/>
+    <comp lib="8" loc="(240,870)" name="Ground">
+      <a name="facing" val="west"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="8" loc="(270,470)" name="Ground">
+      <a name="facing" val="west"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="8" loc="(480,260)" name="Ground">
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="8" loc="(480,380)" name="Ground"/>
     <wire from="(140,110)" to="(140,170)"/>
     <wire from="(140,110)" to="(240,110)"/>
     <wire from="(140,170)" to="(140,240)"/>
@@ -1641,10 +1638,6 @@
     <comp lib="0" loc="(340,310)" name="Pin">
       <a name="label" val="Reset"/>
     </comp>
-    <comp lib="0" loc="(350,220)" name="Ground">
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="0" loc="(380,190)" name="Power"/>
     <comp lib="0" loc="(550,230)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="AddressOut"/>
@@ -1664,6 +1657,10 @@
       <a name="label" val="ProgramCounter"/>
       <a name="width" val="16"/>
     </comp>
+    <comp lib="8" loc="(350,220)" name="Ground">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="8" loc="(380,190)" name="Power"/>
     <wire from="(340,240)" to="(420,240)"/>
     <wire from="(340,270)" to="(430,270)"/>
     <wire from="(340,290)" to="(440,290)"/>
@@ -1741,17 +1738,11 @@
       <a name="label" val="Reset"/>
     </comp>
     <comp lib="0" loc="(280,300)" name="Clock"/>
-    <comp lib="0" loc="(310,250)" name="Ground">
-      <a name="facing" val="west"/>
-    </comp>
     <comp lib="0" loc="(390,460)" name="Pin">
       <a name="facing" val="north"/>
       <a name="label" val="Step0Low"/>
       <a name="labelloc" val="south"/>
       <a name="type" val="output"/>
-    </comp>
-    <comp lib="0" loc="(400,250)" name="Ground">
-      <a name="facing" val="west"/>
     </comp>
     <comp lib="0" loc="(480,460)" name="Pin">
       <a name="facing" val="north"/>
@@ -1759,17 +1750,11 @@
       <a name="labelloc" val="south"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="0" loc="(490,250)" name="Ground">
-      <a name="facing" val="west"/>
-    </comp>
     <comp lib="0" loc="(570,460)" name="Pin">
       <a name="facing" val="north"/>
       <a name="label" val="Step1Low"/>
       <a name="labelloc" val="south"/>
       <a name="type" val="output"/>
-    </comp>
-    <comp lib="0" loc="(580,250)" name="Ground">
-      <a name="facing" val="west"/>
     </comp>
     <comp lib="0" loc="(660,460)" name="Pin">
       <a name="facing" val="north"/>
@@ -1777,17 +1762,11 @@
       <a name="labelloc" val="south"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="0" loc="(670,250)" name="Ground">
-      <a name="facing" val="west"/>
-    </comp>
     <comp lib="0" loc="(750,460)" name="Pin">
       <a name="facing" val="north"/>
       <a name="label" val="Setep2Low"/>
       <a name="labelloc" val="south"/>
       <a name="type" val="output"/>
-    </comp>
-    <comp lib="0" loc="(760,250)" name="Ground">
-      <a name="facing" val="west"/>
     </comp>
     <comp lib="0" loc="(840,460)" name="Pin">
       <a name="facing" val="north"/>
@@ -1872,6 +1851,24 @@
     </comp>
     <comp lib="4" loc="(770,220)" name="S-R Flip-Flop">
       <a name="appearance" val="evolution"/>
+    </comp>
+    <comp lib="8" loc="(310,250)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="8" loc="(400,250)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="8" loc="(490,250)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="8" loc="(580,250)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="8" loc="(670,250)" name="Ground">
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="8" loc="(760,250)" name="Ground">
+      <a name="facing" val="west"/>
     </comp>
     <wire from="(280,200)" to="(290,200)"/>
     <wire from="(280,300)" to="(300,300)"/>
@@ -2149,11 +2146,11 @@
     <comp lib="1" loc="(450,440)" name="NAND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(450,480)" name="NAND Gate">
+    <comp lib="1" loc="(450,480)" name="NOR Gate">
       <a name="negate1" val="true"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(450,520)" name="NAND Gate">
+    <comp lib="1" loc="(450,520)" name="NOR Gate">
       <a name="negate0" val="true"/>
       <a name="size" val="30"/>
     </comp>
@@ -2372,10 +2369,6 @@
       <a name="labelloc" val="east"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="0" loc="(560,540)" name="Ground">
-      <a name="facing" val="west"/>
-      <a name="width" val="8"/>
-    </comp>
     <comp lib="0" loc="(580,470)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="ResetOut"/>
@@ -2408,6 +2401,10 @@
     <comp lib="4" loc="(480,460)" name="S-R Flip-Flop">
       <a name="appearance" val="evolution"/>
       <a name="trigger" val="high"/>
+    </comp>
+    <comp lib="8" loc="(560,540)" name="Ground">
+      <a name="facing" val="west"/>
+      <a name="width" val="8"/>
     </comp>
     <wire from="(210,450)" to="(500,450)"/>
     <wire from="(220,530)" to="(220,670)"/>
@@ -2674,10 +2671,6 @@
       <a name="labelloc" val="east"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="0" loc="(730,210)" name="Ground">
-      <a name="facing" val="west"/>
-      <a name="width" val="8"/>
-    </comp>
     <comp lib="0" loc="(750,150)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="ResetOut"/>
@@ -2710,6 +2703,10 @@
     <comp lib="4" loc="(650,140)" name="S-R Flip-Flop">
       <a name="appearance" val="evolution"/>
       <a name="trigger" val="high"/>
+    </comp>
+    <comp lib="8" loc="(730,210)" name="Ground">
+      <a name="facing" val="west"/>
+      <a name="width" val="8"/>
     </comp>
     <wire from="(370,130)" to="(670,130)"/>
     <wire from="(380,210)" to="(380,610)"/>
