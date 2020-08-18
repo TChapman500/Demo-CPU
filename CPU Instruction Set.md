@@ -1,8 +1,8 @@
 # Demo CPU
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.
 
-| Instruction | Description | Opcode |
-| ----------- | ----------- | ------ |
+| Instruction | Description | Opcode (binary) |
+| ----------- | ----------- | --------------- |
 | `NOP` | Does nothing. | `00000000` |
 | `LD acc, imm8` | Copies the immediate byte to the accumulator. | `00000001` |
 | `ST imm16, out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
