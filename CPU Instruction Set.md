@@ -1,4 +1,4 @@
-# Demo CPU
+# Demo CPU Enhanced Instruction Set
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.
 
 | Instruction | Description | Opcode (binary) |
