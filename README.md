@@ -10,15 +10,15 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | ----------- | ----------- | --------------- |
 | `NOP` | Does nothing. | `00000000` |
 | `LD acc, imm8` | Copies the immediate byte to the accumulator. | `00000001` |
-| `ST imm16, out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
-| `LDR acc, imm16` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
+| `ST [imm16], out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
+| `LD acc, [imm16]` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
 | `MOV acc, out` | Copies the contents of the output register to the accumulator. | `00000100` |
 | `JMP imm16` | Unconditional jump to specified address. | `00000111` |
 | `LD rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
-| `LDR rX, imm16` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
+| `LD rX, [imm16]` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
 | `MOV rX, out` | Copies the contents of the output register to the specified GPR. | `00011xxx` |
 | `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
-| `ST imm16, rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
+| `ST [imm16], rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
 | `JNE imm16` | Jumps to the specified RAM address if `A != B`. | `00110000` |
 | `JL imm16` | Jumps to the specified RAM address if `A < B`. | `00110001` |
 | `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110010` |
