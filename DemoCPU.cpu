@@ -28,23 +28,23 @@
 	
 	#tokendef alu
 	{
-		ADD = 0x88
-		SUB = 0x90
-		NEG = 0x98
-		INC = 0xA0
-		DEC = 0xA8
-		MUL = 0xB0
-		AND = 0xB8
-		NAND = 0xC0
-		OR = 0xC8
-		NOR = 0xD0
-		NOT = 0xD8
-		XOR = 0xE0
-		SHR = 0xE8
-		SHL = 0xF0
-		CMP = 0xF8
+		ADD = 17
+		SUB = 18
+		NEG = 19
+		INC = 20
+		DEC = 21
+		MUL = 22
+		AND = 23
+		NAND = 24
+		OR = 25
+		NOR = 26
+		NOT = 27
+		XOR = 28
+		SHR = 29
+		SHL = 30
+		CMP = 31
 	}
-    
+	
 	NOP				-> 0x00
 	LD	acc, {imm8}		-> 0x01 @ imm8[7:0]
 	ST	[{imm16}], out		-> 0x02
@@ -53,12 +53,12 @@
 	
 	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
 	
-	LD	{rX : reg}, {imm8}	-> (0x08[7:0] | rX[7:0])[7:0] @ imm8[7:0]
-	LD	{rX : reg}, [{imm16}]	-> (0x10[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	MOV	{rX : reg}, out		-> (0x18[7:0] | rX[7:0])[7:0]
-	MOV	acc, {rX : reg}		-> (0x20[7:0] | rX[7:0])[7:0]
-	ST	[{imm16}], {rX : reg}	-> (0x28[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	{cond : jump}	{imm16}		-> (0x30[7:0] | cond[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	LD	{rX : reg}, {imm8}	-> (0x08 | rX[2:0])[7:0] @ imm8[7:0]
+	LD	{rX : reg}, [{imm16}]	-> (0x10 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	MOV	{rX : reg}, out		-> (0x18 | rX[2:0])[7:0]
+	MOV	acc, {rX : reg}		-> (0x20 | rX[2:0])[7:0]
+	ST	[{imm16}], {rX : reg}	-> (0x28 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	{cond : jump}	{imm16}		-> (0x30 | cond[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
 	
-	{aop : alu}	{rX : reg}	-> (aop[7:0] | rX[7:0])[7:0]
+	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
 }
