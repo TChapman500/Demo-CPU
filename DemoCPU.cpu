@@ -1,0 +1,104 @@
+#cpudef "DemoCPU"
+{
+	#bits 8
+	
+	#tokendef reg
+	{
+		r0 = 0
+		r1 = 1
+		r2 = 2
+		r3 = 3
+		r4 = 4
+		r5 = 5
+		r6 = 6
+		r7 = 7
+	}
+	
+	#tokendef jump
+	{
+		JNE = 0
+		JNZ = 0
+		
+		JE = 1
+		JZ = 1
+		
+		JL = 2
+		JC = 2
+		
+		JNL = 3
+		JNC = 3
+		
+		JG = 4
+		JNG = 5
+	}
+	
+	#tokendef alu
+	{
+		ADC =  16
+		ADD =  17
+		SUB =  18
+		NEG =  19
+		INC =  20
+		DEC =  21
+		MUL =  22
+		AND =  23
+		NAND = 24
+		OR =   25
+		NOR =  26
+		NOT =  27
+		XOR =  28
+		SHR =  29
+		SHL =  30
+		CMP =  31
+	}
+	
+	#tokendef intc
+	{
+		off = 0
+		on = 1
+		clr = 2
+	}
+	
+	NOP				-> 0x00
+	
+	LD	acc, {imm8}		-> 0x01 @ imm8[7:0]
+	ST	[{imm16}], out		-> 0x02
+	LD	acc, [{imm16}]		-> 0x03 @ imm16[7:0] @ imm16[15:8]
+	MOV	acc, out		-> 0x04
+	
+	CALL	{imm16}			-> 0x05 @ imm16[7:0] @ imm16[15:8]
+	RET				-> 0x06
+	
+	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
+	
+	LD	{rX : reg}, {imm8}	-> (0x08 | rX[2:0])[7:0] @ imm8[7:0]
+	LD	{rX : reg}, [{imm16}]	-> (0x10 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	MOV	{rX : reg}, out		-> (0x18 | rX[2:0])[7:0]
+	MOV	acc, {rX : reg}		-> (0x20 | rX[2:0])[7:0]
+	ST	[{imm16}], {rX : reg}	-> (0x28 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	{cond : jump}	{imm16}		-> (0x30 | cond[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	
+	LD	{rX : reg}, [adr]	-> (0x38 | rX[2:0])[7:0]
+	ST	[adr], {rX : reg}	-> (0x40 | rX[2:0])[7:0]
+	
+	PUSH	{rX : reg}		-> (0x48 | rX[2:0])[7:0]
+	POP	{rX : reg}		-> (0x50 | rX[2:0])[7:0]
+	
+	MOV	adrl, {rX : reg}	-> (0x58 | rX[2:0])[7:0]
+	MOV	adrh, {rX : reg}	-> (0x60 | rX[2:0])[7:0]
+	
+	PUSH	out			-> 0x68
+	POP	acc			-> 0x69
+	MOV	adrl, out		-> 0x6A
+	MOV	adrh, out		-> 0x6B
+	
+	ISR	{imm16}			-> 0x6C @ imm16[7:0] @ imm16[15:8]
+	INT	{imm8 : intc}		-> 0x6D @ imm8[7:0]
+	
+	BRK				-> 0x6E
+	HLT				-> 0x6F
+	
+	CLR	{rX : reg}		-> (0x70 | rX[2:0])[7:0]
+	
+	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
+}

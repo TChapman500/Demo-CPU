@@ -1122,11 +1122,11 @@
     <appear>
       <circ-anchor facing="east" height="6" width="6" x="177" y="67"/>
       <circ-port height="10" pin="590,190" width="10" x="85" y="145"/>
-      <circ-port height="10" pin="770,530" width="10" x="175" y="65"/>
+      <circ-port height="10" pin="710,390" width="10" x="175" y="65"/>
       <circ-port height="8" pin="140,60" width="8" x="56" y="46"/>
       <circ-port height="8" pin="230,60" width="8" x="116" y="46"/>
       <circ-port height="8" pin="770,790" width="8" x="176" y="136"/>
-      <circ-port height="8" pin="780,80" width="8" x="176" y="56"/>
+      <circ-port height="8" pin="780,70" width="8" x="176" y="56"/>
       <rect fill="#bc9fff" height="100" stroke="#000000" stroke-width="2" width="150" x="30" y="50"/>
     </appear>
     <comp lib="0" loc="(140,60)" name="Pin">
@@ -1155,7 +1155,7 @@
       <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(590,540)" name="Constant">
+    <comp lib="0" loc="(590,370)" name="Constant">
       <a name="value" val="0x0"/>
       <a name="width" val="8"/>
     </comp>
@@ -1163,18 +1163,18 @@
       <a name="value" val="0x0"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(740,80)" name="Splitter">
-      <a name="appear" val="center"/>
-      <a name="facing" val="west"/>
-    </comp>
-    <comp lib="0" loc="(770,530)" name="Pin">
+    <comp lib="0" loc="(710,390)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="FlagsOut"/>
       <a name="labelloc" val="east"/>
       <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
-    <comp lib="0" loc="(770,530)" name="Splitter">
+    <comp lib="0" loc="(710,390)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(740,70)" name="Splitter">
       <a name="appear" val="center"/>
       <a name="facing" val="west"/>
     </comp>
@@ -1184,7 +1184,7 @@
       <a name="labelloc" val="east"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(780,80)" name="Pin">
+    <comp lib="0" loc="(780,70)" name="Pin">
       <a name="facing" val="west"/>
       <a name="label" val="FlagsIn"/>
       <a name="labelloc" val="east"/>
@@ -1239,7 +1239,7 @@
       <a name="shift" val="lr"/>
     </comp>
     <comp lib="3" loc="(340,770)" name="Shifter"/>
-    <comp lib="3" loc="(640,530)" name="Comparator">
+    <comp lib="3" loc="(640,360)" name="Comparator">
       <a name="mode" val="unsigned"/>
     </comp>
     <comp lib="3" loc="(660,130)" name="Comparator">
@@ -1406,25 +1406,25 @@
     <wire from="(510,470)" to="(510,500)"/>
     <wire from="(510,500)" to="(540,500)"/>
     <wire from="(530,190)" to="(570,190)"/>
-    <wire from="(530,390)" to="(700,390)"/>
+    <wire from="(530,390)" to="(690,390)"/>
     <wire from="(540,120)" to="(540,290)"/>
     <wire from="(540,120)" to="(620,120)"/>
     <wire from="(540,290)" to="(540,500)"/>
     <wire from="(540,500)" to="(540,790)"/>
     <wire from="(540,790)" to="(770,790)"/>
-    <wire from="(570,190)" to="(570,520)"/>
+    <wire from="(570,190)" to="(570,350)"/>
     <wire from="(570,190)" to="(590,190)"/>
-    <wire from="(570,520)" to="(600,520)"/>
-    <wire from="(590,540)" to="(600,540)"/>
+    <wire from="(570,350)" to="(600,350)"/>
+    <wire from="(590,370)" to="(600,370)"/>
     <wire from="(610,140)" to="(620,140)"/>
-    <wire from="(640,530)" to="(750,530)"/>
+    <wire from="(640,360)" to="(650,360)"/>
+    <wire from="(650,360)" to="(650,380)"/>
+    <wire from="(650,380)" to="(690,380)"/>
     <wire from="(650,70)" to="(720,70)"/>
     <wire from="(650,90)" to="(670,90)"/>
     <wire from="(660,130)" to="(670,130)"/>
     <wire from="(670,90)" to="(670,130)"/>
-    <wire from="(700,390)" to="(700,520)"/>
-    <wire from="(700,520)" to="(750,520)"/>
-    <wire from="(740,80)" to="(780,80)"/>
+    <wire from="(740,70)" to="(780,70)"/>
   </circuit>
   <circuit name="TempAddress">
     <a name="appearance" val="custom"/>
