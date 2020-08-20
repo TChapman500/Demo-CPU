@@ -1,4 +1,4 @@
-#cpudef "ChaPM16"
+#cpudef "DemoCPU"
 {
 	#bits 8
 	
