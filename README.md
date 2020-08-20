@@ -1,7 +1,7 @@
 # Demo CPU
-This is a restoration of my original CPU to a working state.  For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.4+).
+This is a restoration of my original CPU to a working state.  For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.4+).  The DemoCPU.cpu file is for use in [customasm](https://github.com/hlorenzi/customasm).
 
-DAT files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  PROG files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
+BIN files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  HEX files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
 
 ## Instruction Set
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.

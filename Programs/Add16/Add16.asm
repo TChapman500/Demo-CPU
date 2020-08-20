@@ -1,17 +1,17 @@
 ; Add 16
 BEGIN:
-	LDR	r0, 22H
-	LDR	r1, 23H
-	LDR	r2, 24H
-	LDR	r3, 25H
+	LD	r0, 0x22
+	LD	r1, 0x23
+	LD	r2, 0x24
+	LD	r3, 0x25
 	MOV	acc, r2
 	ADD	r0
 	MOV	r0, out
-	JC	17H
-	LDR	r2, 0
-	JMP	19H
+	JC	CARRY
+	LD	r2, 0
+	JMP	POST_CARRY
 CARRY:
-	LDR	r2, 1
+	LD	r2, 1
 POST_CARRY:
 	MOV	acc, r3	
 	ADD	r1
@@ -20,5 +20,5 @@ POST_CARRY:
 	ADD	r1
 	MOV	r1, out
 LOOP:
-	JMP	1FH
+	JMP	LOOP
 	

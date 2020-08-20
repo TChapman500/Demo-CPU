@@ -1,0 +1,66 @@
+#cpudef "ChaPM16"
+{
+	#bits 8
+	
+	#tokendef reg
+	{
+		r0 = 0
+		r1 = 1
+		r2 = 2
+		r3 = 3
+		r4 = 4
+		r5 = 5
+		r6 = 6
+		r7 = 7
+	}
+	
+	#tokendef jump
+	{
+		JNE = 0
+		JL = 1
+		JG = 2
+		JE = 3
+		JC = 4
+		JB = 5
+		JF = 6
+		JT = 7
+	}
+	
+	#tokendef alu
+	{
+		ADD = 0x88
+		SUB = 0x90
+		NEG = 0x98
+		INC = 0xA0
+		DEC = 0xA8
+		MUL = 0xB0
+		AND = 0xB8
+		NAND = 0xC0
+		OR = 0xC8
+		NOR = 0xD0
+		NOT = 0xD8
+		XOR = 0xE0
+		SHR = 0xE8
+		SHL = 0xF0
+		CMP = 0xF8
+	}
+    
+	NOP				-> 0x00
+	
+	LD	acc, {imm8}		-> 0x01 @ imm8[7:0]
+	LD	acc, [{imm16}]		-> 0x03 @ imm16[7:0] @ imm16[15:8]
+	
+	LD	{rX : reg}, {imm8}	-> (0x08[7:0] | rX[7:0])[7:0] @ imm8[7:0]
+	LD	{rX : reg}, [{imm16}]	-> (0x10[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	
+	ST	[{imm16}], out		-> 0x02
+	ST	[{imm16}], {rX : reg}	-> (0x28[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	
+	MOV	acc, out		-> 0x04
+	MOV	{rX : reg}, out		-> (0x18[7:0] | rX[7:0])[7:0]
+	MOV	acc, {rX : reg}		-> (0x20[7:0] | rX[7:0])[7:0]
+	
+	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
+	{cond : jump}	{imm16}		-> (0x30[7:0] | cond[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	{aop : alu}	{rX : reg}	-> (aop[7:0] | rX[7:0])[7:0]
+}
