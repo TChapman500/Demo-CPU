@@ -2,48 +2,48 @@
 
 ; Initialize
 INIT:
-	LD	r0,	0		;	0x0000	0x08 0x00
-	LD	r1,	75		;	0x0002	0x09 0x4B
-	LD	r2,	5		;	0x0004	0x0A 0x05
-	LD	r3,	9		;	0x0006	0x0B 0x08
-	LD	r6,	1		;	0x0008	0x0E 0x01
-	LD	r7,	7		;	0x000A	0x0F 0x07
+	LD	r0,	0		; Clear Remainder
+	LD	r1,	75		; Numerator
+	LD	r2,	5		; Denominator
+	LD	r3,	8		; Counter
+	LD	r6,	1		; Shift Left Amount (always 1)
+	LD	r7,	7		; Shift Right Amount (always 7)
 	
 DIVIDE_TOP:
 	; Shift upper half
-	MOV	acc,	r6		;	0x000C	0x26
-	SHL	r0			;	0x000D	0xF0
-	MOV	r0,	out		;	0x000E	0x18
-	MOV	acc,	r7		;	0x000F	0x27
-	SHR	r1			;	0x0010	0xE9
-	MOV	acc,	out		;	0x0011	0x04
-	OR	r0			;	0x0012	0xC8
-	MOV	r0,	out		;	0x0013	0x18
+	MOV	acc,	r6
+	SHL	r0
+	MOV	r0,	out
+	MOV	acc,	r7
+	SHR	r1
+	MOV	acc,	out
+	OR	r0
+	MOV	r0,	out
 	
 	; Shift lower half
-	MOV	acc,	r6		;	0x0014	0x26
-	SHL	r1			;	0x0015	0xF1
-	MOV	r1,	out		;	0x0016	0x19
+	MOV	acc,	r6
+	SHL	r1
+	MOV	r1,	out
 	
 	; Compare
-	MOV	acc,	r2		;	0x0017	0x22
-	CMP	r0			;	0x0018	0xF8
+	MOV	acc,	r2
+	CMP	r0
 	
 	; r0 < r2, can't subtract
-	JL	DEC_COUNTER		;	0x0019	0x31 0x20 0x00
+	JL	DEC_COUNTER
 	
 	; r0 >= r2, subtract
-	SUB	r0			;	0x001C	0x90
-	MOV	r0,	out		;	0x001D	0x18
-	INC	r1			;	0x001E	0xA1
-	MOV	r1,	out		;	0x001F	0x19
+	SUB	r0
+	MOV	r0,	out
+	INC	r1
+	MOV	r1,	out
 	
 DEC_COUNTER:
 	; Decrement counter, then check to see if r3 > 0
-	DEC	r3			;	0x0020	0xAB
-	MOV	r3,	out		;	0x0021	0x1B
-	CMP	r3			;	0x0022	0xFB
-	JT	DIVIDE_TOP		;	0x0023	0x37 0x0C 0x00
+	DEC	r3
+	MOV	r3,	out
+	CMP	r3
+	JT	DIVIDE_TOP
 	
 END_PROGRAM:
-	JMP	END_PROGRAM		;	0x0026	0x07 0x26 0x00
+	JMP	END_PROGRAM
