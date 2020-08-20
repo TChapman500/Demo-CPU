@@ -46,21 +46,19 @@
 	}
     
 	NOP				-> 0x00
-	
 	LD	acc, {imm8}		-> 0x01 @ imm8[7:0]
+	ST	[{imm16}], out		-> 0x02
 	LD	acc, [{imm16}]		-> 0x03 @ imm16[7:0] @ imm16[15:8]
+	MOV	acc, out		-> 0x04
+	
+	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
 	
 	LD	{rX : reg}, {imm8}	-> (0x08[7:0] | rX[7:0])[7:0] @ imm8[7:0]
 	LD	{rX : reg}, [{imm16}]	-> (0x10[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	
-	ST	[{imm16}], out		-> 0x02
-	ST	[{imm16}], {rX : reg}	-> (0x28[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	
-	MOV	acc, out		-> 0x04
 	MOV	{rX : reg}, out		-> (0x18[7:0] | rX[7:0])[7:0]
 	MOV	acc, {rX : reg}		-> (0x20[7:0] | rX[7:0])[7:0]
-	
-	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
+	ST	[{imm16}], {rX : reg}	-> (0x28[7:0] | rX[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
 	{cond : jump}	{imm16}		-> (0x30[7:0] | cond[7:0])[7:0] @ imm16[7:0] @ imm16[15:8]
+	
 	{aop : alu}	{rX : reg}	-> (aop[7:0] | rX[7:0])[7:0]
 }
