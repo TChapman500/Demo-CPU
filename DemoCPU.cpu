@@ -30,6 +30,9 @@
 		
 		JG = 4
 		JNG = 5
+		
+		JF = 6
+		JT = 7
 	}
 	
 	#tokendef alu
