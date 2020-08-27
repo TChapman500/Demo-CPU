@@ -40,7 +40,7 @@
 		NEG =  19
 		INC =  20
 		DEC =  21
-		MUL =  22
+		TEST = 22
 		AND =  23
 		NAND = 24
 		OR =   25
