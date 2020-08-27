@@ -30,9 +30,6 @@
 		
 		JG = 4
 		JNG = 5
-		
-		JF = 6
-		JT = 7
 	}
 	
 	#tokendef alu
@@ -90,8 +87,8 @@
 	MOV	adrl, {rX : reg}	-> (0x58 | rX[2:0])[7:0]
 	MOV	adrh, {rX : reg}	-> (0x60 | rX[2:0])[7:0]
 	
-	PUSH	out			-> 0x68
-	POP	acc			-> 0x69
+	
+	
 	MOV	adrl, out		-> 0x6A
 	MOV	adrh, out		-> 0x6B
 	
@@ -100,8 +97,6 @@
 	
 	BRK				-> 0x6E
 	HLT				-> 0x6F
-	
-	CLR	{rX : reg}		-> (0x70 | rX[2:0])[7:0]
 	
 	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
 }
