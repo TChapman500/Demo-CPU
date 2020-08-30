@@ -17,9 +17,9 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 | `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
 | `ST imm16, rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
 | `JNE/JNZ imm16` | Jumps to the specified RAM address if the zero flag is cleared/if `A != B`. | `00110000` |
-| `JE/JZ imm16` | Jumps to the specified RAM address if the carry flag is set/if `A < B`. | `00110001` |
-| `JL/JC imm16` | Jumps to the specified RAM address if the carry flag is cleared/if `A >= B`. | `00110010` |
-| `JNL/JNC imm16` | Jumps to the specified RAM address if the zero flag is set/if `A == B`. | `00110011` |
+| `JE/JZ imm16` | Jumps to the specified RAM address if the carry flag is set/if `A == B`. | `00110001` |
+| `JL/JC imm16` | Jumps to the specified RAM address if the carry flag is cleared/if `A < B`. | `00110010` |
+| `JNL/JNC imm16` | Jumps to the specified RAM address if the zero flag is set/if `A >= B`. | `00110011` |
 | `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110100` |
 | `JNG imm16` | Jumps to the specified RAM address if `A <= B`.  | `00110101` |
 | `LD rX, [adr]` | Loads the value stored at the address pointed to by the address register into the specified GPR. | `00111xxx` |
