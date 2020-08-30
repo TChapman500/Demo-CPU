@@ -99,5 +99,7 @@
 	LD	adr, {imm16}		-> 0x6E @ imm16[7:0] @ imm16[15:8]
 	LD	acc, [adr]		-> 0x6F
 	
+	RTI				-> 0x70
+	
 	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
 }
