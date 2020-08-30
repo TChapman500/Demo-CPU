@@ -87,7 +87,8 @@
 	MOV	adrl, {rX : reg}	-> (0x58 | rX[2:0])[7:0]
 	MOV	adrh, {rX : reg}	-> (0x60 | rX[2:0])[7:0]
 	
-	
+	LD	adrl, {imm8}		-> 0x68 @ imm8[7:0]
+	LD	adrh, {imm8}		-> 0x69 @ imm8[7:0]
 	
 	MOV	adrl, out		-> 0x6A
 	MOV	adrh, out		-> 0x6B
@@ -95,8 +96,8 @@
 	ISR	{imm16}			-> 0x6C @ imm16[7:0] @ imm16[15:8]
 	INT	{imm8 : intc}		-> 0x6D @ imm8[7:0]
 	
-	BRK				-> 0x6E
-	HLT				-> 0x6F
+	LD	adr, {imm16}		-> 0x6E @ imm16[7:0] @ imm16[15:8]
+	LD	acc, [adr]		-> 0x6F
 	
 	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
 }
