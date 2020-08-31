@@ -1,8 +1,4 @@
 # Ehanched Demo CPU
-If you would like to extend the demo CPU, fork this repository and start working on this branch (restored branch).  Once your enhancements are done, create a pull request.
+This is an enhanced version of my original CPU.  This enhancement adds stack management, function call and return instructions, and more data transfer instructions.  It also lays the framework for implementing system interrupts. For this CPU to work, you will need the latest version of [Logisim Evolution (Holy Cross Edition)](https://github.com/kevinawalsh/logisim-evolution) (4.0.4+).  The DemoCPU.cpu file is for use with [customasm](https://github.com/hlorenzi/customasm).
 
-## Rules for Pull Requests
-All pull requests for the enhanced CPU will result in the circuit of that pull request being tested against the following rules.  Failing this test will result in a closed pull request.
-1.	Do not make a pull request to the preserved or restored branches.  Only make pull requests to this branch.
-2.	All instructions that you add must be working properly before any pull requests are made.
-3.	The [original instruction set](https://github.com/TChapman500/Demo-CPU/tree/enhanced/CPU%20Instruction%20Set.md) must be preserved and functional.
+BIN files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  HEX files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
