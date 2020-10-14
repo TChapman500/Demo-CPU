@@ -1,102 +1,116 @@
-#cpudef
+#bits 8
+#subruledef reg
 {
-	#bits 8
+	r0 => 0
+	r1 => 1
+	r2 => 2
+	r3 => 3
+	r4 => 4
+	r5 => 5
+	r6 => 6
+	r7 => 7
+}
+
+#subruledef jump
+{
+	JMP => 0
 	
-	#tokendef reg
-	{
-		r0 = 0
-		r1 = 1
-		r2 = 2
-		r3 = 3
-		r4 = 4
-		r5 = 5
-		r6 = 6
-		r7 = 7
-	}
+	JNE => 1
+	JNZ => 1
 	
-	#tokendef jump
-	{
-		JNE = 0
-		JNZ = 0
-		
-		JE  = 1
-		JZ  = 1
-		
-		JL  = 2
-		JC  = 2
-		
-		JNL = 3
-		JNC = 3
-		
-		JG  = 4
-		JNG = 5
-	}
+	JE  => 2
+	JZ  => 2
 	
-	#tokendef alu
-	{
-		ADC  = 18
-		ADD  = 19
-		SUB  = 20
-		NEG  = 21
-		INC  = 22
-		DEC  = 23
-		TEST = 24
-		AND  = 25
-		OR   = 26
-		NOT  = 27
-		XOR  = 28
-		SHR  = 29
-		SHL  = 30
-		CMP  = 31
-	}
+	JL  => 3
+	JC  => 3
 	
+	JNL => 4
+	JNC => 4
+	
+	JG  => 5
+	JNG => 6
+}
+
+#subruledef alu
+{
+	ADC  => 18
+	ADD  => 19
+	SUB  => 20
+	NEG  => 21
+	INC  => 22
+	DEC  => 23
+	TEST => 24
+	AND  => 25
+	OR   => 26
+	NOT  => 27
+	XOR  => 28
+	SHR  => 29
+	SHL  => 30
+	CMP  => 31
+}
+
+#ruledef DemoCPU
+{
 	; No Operation
-	NOP				-> 0x00
+	NOP				=> 0x00
 	
-	; Interrupts
-	ISR	{imm16}			-> 0x01 @ imm16[7:0] @ imm16[15:8]	
-	INT	0			-> 0x02
-	INT	1			-> 0x03
-	RTI				-> 0x04
+	; Interrupt Handling
+	ISR	{imm16}			=> 0x01 @ imm16[7:0] @ imm16[15:8]
+	INT	0			=> 0x02
+	INT	1			=> 0x03
+	RTI				=> 0x04
 	
 	; Functions
-	CALL	{imm16}			-> 0x05 @ imm16[7:0] @ imm16[15:8]
-	RET				-> 0x06
+	CALL	{imm16}			=> 0x05 @ imm16[7:0] @ imm16[15:8]
+	RET				=> 0x06
 	
-	; Unconditional Jump
-	JMP	{imm16}			-> 0x07 @ imm16[7:0] @ imm16[15:8]
-	
-	; Data Transfer
-	LD	{rX : reg}, {imm8}	-> (0x08 | rX[2:0])[7:0] @ imm8[7:0]
-	LD	{rX : reg}, [{imm16}]	-> (0x10 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	MOV	{rX : reg}, out		-> (0x18 | rX[2:0])[7:0]
-	MOV	acc, {rX : reg}		-> (0x20 | rX[2:0])[7:0]
-	ST	[{imm16}], {rX : reg}	-> (0x28 | rX[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	
-	; Conditional Jump
-	{cond : jump}	{imm16}		-> (0x30 | cond[2:0])[7:0] @ imm16[7:0] @ imm16[15:8]
-	
-	; GPR to/from RAM with Address Register as Pointer
-	LD	{rX : reg}, [adr]	-> (0x38 | rX[2:0])[7:0]
-	ST	[adr], {rX : reg}	-> (0x40 | rX[2:0])[7:0]
-	
-	; Stack Management GPR
-	PUSH	{rX : reg}		-> (0x48 | rX[2:0])[7:0]
-	POP	{rX : reg}		-> (0x50 | rX[2:0])[7:0]
-	
-	; GPR to/from Address Register
-	MOV	adrl, {rX : reg}	-> (0x58 | rX[2:0])[7:0]
-	MOV	adrh, {rX : reg}	-> (0x60 | rX[2:0])[7:0]
+	; Flags Register
+	POP	flags			=> 0x07
+	PUSH	flags			=> 0x08
 	
 	; Load Address Register
-	LD	adrl, {imm8}		-> 0x68 @ imm8[7:0]
-	LD	adrh, {imm8}		-> 0x69 @ imm8[7:0]
-	LD	adr, {imm16}		-> 0x6A @ imm16[7:0] @ imm16[15:8]
+	LD	adrl, {imm8}		=> 0x09 @ imm8`8
+	LD	adrh, {imm8}		=> 0x0A @ imm8`8
+	LD	adr, {imm16}		=> 0x0B @ imm16[7:0] @ imm16[15:8]
+	LD	adr, [{imm16}]		=> 0x0C @ imm16[7:0] @ imm16[15:8]
+	LD	adr, [adr]		=> 0x0D
+	POP	adr			=> 0x0E
 	
-	; More Stack Management
-	PUSH	adr			-> 0x6B
-	POP	adr			-> 0x6C
+	; Store Address Register
+	ST	[{imm16}], adr		=> 0x0F @ imm16`16
+	ST	[adr], adr		=> 0x10
+	PUSH	adr			=> 0x11
 	
-	; Arithmetic Logic Unit
-	{aop : alu}	{rX : reg}	-> aop[4:0] @ rX[2:0]
+	; Halt the Processor
+	HLT				=> 0x12
+	
+	; Jumps
+	{condition : jump}	{imm16}	=> (0x18 | condition`3)`8 @ imm16[7:0] @ imm16[15:8]
+	
+	; Load GPR
+	LD	{rX : reg}, {imm8}	=> (0x20 | rX`3)`8 @ imm8`8
+	LD	{rX : reg}, [adr]	=> (0x30 | rX`3)`8
+	LD	{rX : reg}, [{imm16}]	=> (0x28 | rX`3)`8 @ imm16[7:0] @ imm16[15:8]
+	POP	{rX : reg}		=> (0x38 | rX`3)`8
+	
+	; Store GPR
+	ST	[{imm16}], {rX : reg}	=> (0x40 | rX`3)`8 @ imm16[7:0] @ imm16[15:8]
+	ST	[adr], {rX : reg}	=> (0x48 | rX`3)`8
+	PUSH	{rX : reg}		=> (0x50 | rX`3)`8
+	
+	; ALU Data Transfer
+	MOV	acc, {rX : reg}		=> (0x58 | rX`3)`8
+	MOV	{rX : reg}, out		=> (0x60 | rX`3)`8
+	
+	; Address Register Data Transfer
+	MOV	{rX : reg}, adrl	=> (0x68 | rX`3)`8
+	MOV	{rX : reg}, adrh	=> (0x70 | rX`3)`8
+	MOV	adrl, {rX : reg}	=> (0x78 | rX`3)`8
+	MOV	adrh, {rX : reg}	=> (0x80 | rX`3)`8
+	
+	; Arithmetic Operations
+	{aop : alu}	{rX : reg}	=> aop`5 @ rX`3
+	
+	DB	{value}			=> value`8
+	DW	{value}			=> imm16[7:0] @ imm16[15:8]
 }
