@@ -8,50 +8,54 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 
 | Instruction | Description | Opcode (binary) |
 | ----------- | ----------- | --------------- |
-| `NOP` | Does nothing. | `00000000` |
-| `LD acc, imm8` | Copies the immediate byte to the accumulator. | `00000001` |
-| `ST imm16, out` | Copies the contents of the output register to the specified RAM address. | `00000010` |
-| `LDR acc, imm16` | Copies the contents of RAM at specified address to the accumulator. | `00000011` |
-| `MOV acc, out` | Copies the contents of the output register to the accumulator. | `00000100` |
-| `CALL imm16` | Calls a function located at the specified immediate address. | `00000101` |
-| `RET` | Returns from a function. | `00000110` |
-| `JMP imm16` | Unconditional jump to specified immediate address. | `00000111` |
-| `LD rX, imm8` | Copies the immediate byte to the specified general purpose register (GPR). | `00001xxx` |
-| `LDR rX, imm16` | Copies the contents of the specified RAM address to the specified GPR. | `00010xxx` |
-| `MOV rX, out` | Copies the contents of the output register to the specified GPR. | `00011xxx` |
-| `MOV acc, rX` | Copies the contents of the specified GPR to the accumulator. | `00100xxx` |
-| `ST imm16, rX` | Copies the contents of the specified GPR to the specified RAM address. | `00101xxx` |
-| `JNE/JNZ imm16` | Jumps to the specified RAM address if the zero flag is cleared/if `A != B`. | `00110000` |
-| `JE/JZ imm16` | Jumps to the specified RAM address if the carry flag is set/if `A == B`. | `00110001` |
-| `JL/JC imm16` | Jumps to the specified RAM address if the carry flag is cleared/if `A < B`. | `00110010` |
-| `JNL/JNC imm16` | Jumps to the specified RAM address if the zero flag is set/if `A >= B`. | `00110011` |
-| `JG imm16` | Jumps to the specified RAM address if `A > B`. | `00110100` |
-| `JNG imm16` | Jumps to the specified RAM address if `A <= B`.  | `00110101` |
-| `LD rX, [adr]` | Loads the value stored at the address pointed to by the address register into the specified GPR. | `00111xxx` |
-| `ST [adr], rX` | Stores the value in the specified GPR at the address pointed to by the address register. | `01000xxx` |
-| `PUSH rX` | Decrements r7 and then stores the specified register at the address specified by `0x08[r7]`. | `01001xxx` |
-| `POP rX` | Loads the value stored at address `0x08[r7]` into the specified GPR and increments r7. | `01010xxx` |
-| `MOV adrl, rX` | Copies the value in the specified GPR into the lower byte of the address register. | `01011xxx` |
-| `MOV adrh, rX` | Copies the value in the specified GPR into the upper byte of the address register. | `01100xxx` |
-| `LD adrl, imm8` | Loads the immediate byte into the lower byte of the address register. | `01101000` |
-| `LD adrh, imm8` | Loads the immediate byte into the upper byte of the address register. | `01101001` |
-| `MOV adrl, out` | Copies the value in the output register to the lower byte of the address register. | `01101010` |
-| `MOV adrh, out` | Copies the value in the output register to the upper byte of the address register. | `01101011` |
-| `ISR imm16` | (NOT IMPLEMENTED) Sets the interrupt service routine to the specified address. | `01101100` |
-| `INT imm8` | (NOT IMPLEMENTED) If `imm8 = 0`, disables interrupts.  If `imm8 = 1`, enables interrupts. | `01101101` |
-| `LD adr, imm16` | Loads the immediate word (2 bytes) into the address register. | `01101110` |
-| `LD acc, [adr]` | Copies the value at the address specified by the address register into the accumulator. | `01101111` |
-| `ADC rX` | Adds the accumulator and the carry flag to the specified GPR.  The result is stored in the output register. | `10000xxx` |
-| `ADD rX` | Adds the accumulator to the specified GPR.  The result is stored in the output register. | `10001xxx` |
-| `SUB rX` | Subtracts the accumulator from the specified GPR.  The result is stored in the output register.  | `10010xxx` |
-| `NEG rX` | Negates the specified GPR.  The result is stored in the output register. | `10011xxx` |
-| `INC rX` | Increments the specified GPR.  The result is stored in the output register. | `10100xxx` |
-| `DEC rX` | Decrements the specified GPR.  The result is stored in the output register. | `10101xxx` |
-| `TEST rX` | Sets the zero flag if the specified GPR is zero.  Does not set the carry flag. | `10110xxx` |
-| `AND rX` | Logical AND operation with the accumulator and the specified GPR.  The result is stored in the output register. | `10111xxx` |
-| `NAND rX` | Logical NAND operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11000xxx` |
-| `OR rX` | Logical OR operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11001xxx` |
-| `NOR rX` | Logical NOR operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11010xxx` |
+| `NOP` | Does nothing. | `0x00` |
+| `ISR imm16` | Sets the address of the interrupt service routine. | `0x01` |
+| `INT 0` | Disables interrupts. | `0x02` |
+| `INT 1` | Enables interrupts. | `0x03` |
+| `RTI` | Returns from interrupt service routine. | `0x04` |
+| `CALL imm16` | Calls a function at the immediate address. | `0x05` |
+| `RET` | Returns from a function. | `0x06` |
+| `PUSH flags` | Pushes the flags register to the stack. | `0x07` |
+| `POP flags` | Pops the flags register from the stack. | `0x08` |
+| `LD adrl, imm8` | Loads the immediate byte into the lower half of the address register. | `0x09` |
+| `LD adrh, imm8` | Loads the immediate byte into the upper half of the address register. | `0x0A` |
+| `LD adr, imm16` | Loads the immediate address into the address register. | `0x0B` |
+| `LD adr, [imm16]` | Loads the address at the immediate address into the address register. | `0x0C` |
+| `LD adr, [adr]` | Loads the address at the address in the address register into the address register. | `0x0D` |
+| `POP adr` | Pops the address register from the stack. | `0x0E` |
+| `ST [imm16], adr` | Stores the value of the address register at the immediate address. | `0x0F` |
+| `ST [adr], adr` | Stores the value of the address register at address in the address register. | `0x10` |
+| `PUSH adr` | Pushes the address register to the stack. | `0x11` |
+| `HLT` | Halts the processor until a reset signal is received. | `0x12` |
+| `JMP imm16` | Unconditional jump to immediate address. | `0x18` |
+| `JNE/JNZ imm16` | Jumps to the immediate address if the zero flag is cleared. | `0x19` |
+| `JE/JZ imm16` | Jumps to the immediate address if the zero flag is set. | `0x1A` |
+| `JL/JC imm16` | Jumps to the immediate address if the carry flag is set. | `0x1B` |
+| `JNL/JNC imm16` | Jumps to the immediate address if the carry flag is cleared. | `0x1C` |
+| `JG imm16` | Jumps to the immediate address if the zero and carry flags are cleared. | `0x1D` |
+| `JNG imm16` | Jumps to the immediate address if the zero or carry flags are set. | `0x1E` |
+| `LD rX, imm8` | Loads the immediate byte into the specified register. | `00100xxx` |
+| `LD rX, [imm16]` | Loads the byte at the immediate address into the specified register. | `00101xxx` |
+| `LD rX, [adr]` | Loads the value stored at the address in the address register into the specified register. | `00110xxx` |
+| `POP rX` | Pops the specified register from the stack. | `00111xxx` |
+| `ST [imm16], rX` | Stores the value in the specified register at the immediate address. | `01000xxx` |
+| `ST [adr], rX` | Stores the value in the specified register at the address in the address register. | `01001xxx` |
+| `PUSH rX` | Pushes the specified register onto the stack.. | `01010xxx` |
+| `MOV acc, rX` | Copies the value in the specified register into the accumulator. | `01011xxx` |
+| `MOV rX, out` | Copies the value in the output register into the specified register. | `01100xxx` |
+| `MOV rX, adrl` | Copies the value in the lower half of the address register into the specified register. | `01101xxx` |
+| `MOV rX, adrh` | Copies the value in the upper half of the address register into the specified register. | `01110xxx` |
+| `MOV adrl, rX` | Copies the value in the specified register into the lower byte of the address register. | `01111xxx` |
+| `MOV adrh, rX` | Copies the value in the specified register into the upper byte of the address register. | `10000xxx` |
+| `ADC rX` | Adds the accumulator and the carry flag to the specified GPR.  The result is stored in the output register. | `10010xxx` |
+| `ADD rX` | Adds the accumulator to the specified GPR.  The result is stored in the output register. | `10011xxx` |
+| `SUB rX` | Subtracts the accumulator from the specified GPR.  The result is stored in the output register.  | `10100xxx` |
+| `NEG rX` | Negates the specified GPR.  The result is stored in the output register. | `10101xxx` |
+| `INC rX` | Increments the specified GPR.  The result is stored in the output register. | `10110xxx` |
+| `DEC rX` | Decrements the specified GPR.  The result is stored in the output register. | `10111xxx` |
+| `TEST rX` | Sets the zero flag if the specified GPR is zero.  Does not set the carry flag. | `11000xxx` |
+| `AND rX` | Logical AND operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11001xxx` |
+| `OR rX` | Logical OR operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11010xxx` |
 | `NOT rX` | Logical NOT operation of the specified GPR.  The result is stored in the output register. | `11011xxx` |
 | `XOR rX` | Logical XOR operation with the accumulator and the specified GPR.  The result is stored in the output register. | `11100xxx` |
 | `SHR rX` | Logical shift right of the specified GPR by the amount specified by the accumulator.  The result is stored in the output register. | `11101xxx` |
