@@ -6,6 +6,8 @@ BIN files are raw binary files that can be loaded directly into RAM through the 
 # Instruction Set
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.  This instruction set is incompatible with the restored version of the CPU, though some instructions will still work with it.
 
+`imm8` is a one-byte number that immediately follows the opcode.  `imm16` is a two-byte number that immediately follows the opcode (little endian order).  `rX` is a general purpose register where `X` is a 3-bit number from 0-7.  These 3 bits make up the 3 least-significant bits of the opcode.  `flags` refers to the flags register, `adr` refers to the address register, and `adrl` and `adrh` refer to the lower half and upper half of the flags register respectively.
+
 | Instruction | Description | Opcode (binary) |
 | ----------- | ----------- | --------------- |
 | `NOP` | Does nothing. | `00000000` |
