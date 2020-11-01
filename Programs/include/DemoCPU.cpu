@@ -65,8 +65,8 @@
 	RET				=> 0x06
 	
 	; Flags Register
-	POP	flags			=> 0x07
-	PUSH	flags			=> 0x08
+	PUSH	flags			=> 0x07
+	POP	flags			=> 0x08
 	
 	; Load Address Register
 	LD	adrl, {imm8}		=> 0x09 @ imm8`8
@@ -77,7 +77,7 @@
 	POP	adr			=> 0x0E
 	
 	; Store Address Register
-	ST	[{imm16}], adr		=> 0x0F @ imm16`16
+	ST	[{imm16}], adr		=> 0x0F @ imm16[7:0] @ imm16[15:8]
 	ST	[adr], adr		=> 0x10
 	PUSH	adr			=> 0x11
 	
@@ -110,7 +110,4 @@
 	
 	; Arithmetic Operations
 	{aop : alu}	{rX : reg}	=> aop`5 @ rX`3
-	
-	DB	{value}			=> value`8
-	DW	{value}			=> imm16[7:0] @ imm16[15:8]
 }
