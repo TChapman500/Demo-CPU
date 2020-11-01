@@ -8,32 +8,32 @@ Processor is Little-Endian and the results of all ALU operations are stored in t
 
 | Instruction | Description | Opcode (binary) |
 | ----------- | ----------- | --------------- |
-| `NOP` | Does nothing. | `0x00` |
-| `ISR imm16` | Sets the address of the interrupt service routine. | `0x01` |
-| `INT 0` | Disables interrupts. | `0x02` |
-| `INT 1` | Enables interrupts. | `0x03` |
-| `RTI` | Returns from interrupt service routine. | `0x04` |
-| `CALL imm16` | Calls a function at the immediate address. | `0x05` |
-| `RET` | Returns from a function. | `0x06` |
-| `PUSH flags` | Pushes the flags register to the stack. | `0x07` |
-| `POP flags` | Pops the flags register from the stack. | `0x08` |
-| `LD adrl, imm8` | Loads the immediate byte into the lower half of the address register. | `0x09` |
-| `LD adrh, imm8` | Loads the immediate byte into the upper half of the address register. | `0x0A` |
-| `LD adr, imm16` | Loads the immediate address into the address register. | `0x0B` |
-| `LD adr, [imm16]` | Loads the address at the immediate address into the address register. | `0x0C` |
-| `LD adr, [adr]` | Loads the address at the address in the address register into the address register. | `0x0D` |
-| `POP adr` | Pops the address register from the stack. | `0x0E` |
-| `ST [imm16], adr` | Stores the value of the address register at the immediate address. | `0x0F` |
-| `ST [adr], adr` | Stores the value of the address register at address in the address register. | `0x10` |
-| `PUSH adr` | Pushes the address register to the stack. | `0x11` |
-| `HLT` | Halts the processor until a reset signal is received. | `0x12` |
-| `JMP imm16` | Unconditional jump to immediate address. | `0x18` |
-| `JNE/JNZ imm16` | Jumps to the immediate address if the zero flag is cleared. | `0x19` |
-| `JE/JZ imm16` | Jumps to the immediate address if the zero flag is set. | `0x1A` |
-| `JL/JC imm16` | Jumps to the immediate address if the carry flag is set. | `0x1B` |
-| `JNL/JNC imm16` | Jumps to the immediate address if the carry flag is cleared. | `0x1C` |
-| `JG imm16` | Jumps to the immediate address if the zero and carry flags are cleared. | `0x1D` |
-| `JNG imm16` | Jumps to the immediate address if the zero or carry flags are set. | `0x1E` |
+| `NOP` | Does nothing. | `00000000` |
+| `ISR imm16` | Sets the address of the interrupt service routine. | `00000001` |
+| `INT 0` | Disables interrupts. | `00000010` |
+| `INT 1` | Enables interrupts. | `00000011` |
+| `RTI` | Returns from interrupt service routine. | `00000100` |
+| `CALL imm16` | Calls a function at the immediate address. | `00000101` |
+| `RET` | Returns from a function. | `00000110` |
+| `PUSH flags` | Pushes the flags register to the stack. | `00000111` |
+| `POP flags` | Pops the flags register from the stack. | `00001000` |
+| `LD adrl, imm8` | Loads the immediate byte into the lower half of the address register. | `00001001` |
+| `LD adrh, imm8` | Loads the immediate byte into the upper half of the address register. | `00001010` |
+| `LD adr, imm16` | Loads the immediate address into the address register. | `00001011` |
+| `LD adr, [imm16]` | Loads the address at the immediate address into the address register. | `00001100` |
+| `LD adr, [adr]` | Loads the address at the address in the address register into the address register. | `00001101` |
+| `POP adr` | Pops the address register from the stack. | `00001110` |
+| `ST [imm16], adr` | Stores the value of the address register at the immediate address. | `00001111` |
+| `ST [adr], adr` | Stores the value of the address register at address in the address register. | `00010000` |
+| `PUSH adr` | Pushes the address register to the stack. | `00010001` |
+| `HLT` | Halts the processor until a reset signal is received. | `00010010` |
+| `JMP imm16` | Unconditional jump to immediate address. | `00011000` |
+| `JNE/JNZ imm16` | Jumps to the immediate address if the zero flag is cleared. | `00011001` |
+| `JE/JZ imm16` | Jumps to the immediate address if the zero flag is set. | `00011010` |
+| `JL/JC imm16` | Jumps to the immediate address if the carry flag is set. | `00011011` |
+| `JNL/JNC imm16` | Jumps to the immediate address if the carry flag is cleared. | `00011100` |
+| `JG imm16` | Jumps to the immediate address if the zero and carry flags are cleared. | `00011101` |
+| `JNG imm16` | Jumps to the immediate address if the zero or carry flags are set. | `00011110` |
 | `LD rX, imm8` | Loads the immediate byte into the specified register. | `00100xxx` |
 | `LD rX, [imm16]` | Loads the byte at the immediate address into the specified register. | `00101xxx` |
 | `LD rX, [adr]` | Loads the value stored at the address in the address register into the specified register. | `00110xxx` |
