@@ -1,3 +1,4 @@
+#include "include/write_bcd.asm"
 
 fibonacci:
 	; Preserve r0 and r1
