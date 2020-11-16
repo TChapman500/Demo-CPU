@@ -3,6 +3,47 @@ This is an enhanced version of my original CPU.  This enhancement adds stack man
 
 BIN files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  HEX files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
 
+# Architecture
+This is an 8-bit processor with an 8-bit data bus and a 16-bit address bus.  There are 5, 8-bit general purpose registers, 3, 8-bit specialty registers, and 5, 16-bit address registers.  Some of these registers overlap with other registers.  The processor is also little-endian.
+
+## Address Registers
+There are 5, 16-bit address registers.
+
+### Address Register (adr)
+This is a 16-bit register that points to a memory location for reading or writing.  Some instructions will copy the pointer in this register to the temporary register in order to preserve the value of this register during the execution of said instruction.  This register is accessed in an `LD`, `ST`, or `MOV` instruction by using `adr` to address the entire register, or `adrl` and `adrh` to access only the lower and upper half of the register respectively.
+
+### Temporary Register
+This 16-bit register that points to a memory location for reading, writing, or executing code.  This register is loaded whenever preservation of the address register is required, when the instruction in question does not need to use the address register, or when loading the address of the next instruction to execute.  The contents of this register are considered invalid after the instruction that is using it finishes executing.  This register cannot be accessed by software.
+
+### Program Counter
+This 16-bit register points to the location of the next instruction to be executed.  It is loaded through the data bus through a `RET` or `RTI` instruction, or from the Interrupt Service System or Temporary Register, or it is incremented.  This register cannot be accessed directly though software, but only indirectly through the `Jxx`, `CALL`, `RET`, or `RTI` instructions, which set the program counter's value, then resumes execution at the new address.
+
+### Interrupt Service System (ISS)
+This 16-bit register points to the first instruction of the Interrupt Service Reoutine (ISR).  This register can only be written to through an `ISR` instruction.  There is no way to read the value of the ISS.  The ISS also contains a 17th bit to determine if interrupts are enabled.  The `INT` instruction will either set or clear this bit depending on the 1-bit embeded operand.
+
+### Stack Pointer
+This 16-bit register points to the top of the stack.  Calling functions, using the `PUSH` and `POP` instructions, and using interrupts will all modify the stack pointer.  The lower half of the stack pointer can be accessed directly as `r7` for both reading, writing, and arithmetic.  The upper half of the stack pointer is hardwired to a value of `0x08`.
+
+## General Purpose Registers (rX)
+There are 5, 8-bit registers that do not have a special function attached to them.  And 8, 8-bit registers that can be accessed with the `rX` operand, where `X` is a number from 0-7.  Values of `X` from 0-4 address the 5 registers that do not have a special function attached to them.
+
+## Accumulator (acc)
+The accumulator can be accessed through the operand `r5` and/or `acc` depending on the instruction.  This register is always the second operand of an ALU operation, though it can also be used as the first operand.  All registers that can be accessed through the `rX` operand of an instruction can be copied into this register.
+
+## Output Register (out)
+The output register can be accessed through the operand `r6` and/or `out` depending on the instruction.  ALU output is stored in this register.  Data from this register can be copied to all registers that can be accessed through the `rX` operand of an instruction.
+
+## Flags Register (flags)
+The flags register is written to whenever an ALU operation is performed.  The output goes to the control unit which then evaluates the flags based on the jump condition specified by a `Jxx` instruction.  This register can only be accessed through the use of `PUSH` or `POP` instructions by specifying `flags` in the operand.
+
+## Interrupts
+Interrupts are disabled by default, by `INT 0` instructions, and by entry into the interrupt service reoutine (ISR).  Interrupts are enabled by `INT 1` or `RTI` instructions.  When interrupts are enabled, the interrupt signal must be held high until an instruction finishes executing.  After that, the processor will enter the ISR.
+
+Upon entry into the ISR, the address of the program counter is pushed onto the stack followed by the value of the flags register.  When an `RTI` instruction is executed, the flags register is popped from the stack followed by the program counter.  The user must push any additional registers that he/she intends to use onto the stack at the begining of the ISR, and then pop those registers from the stack in the reverse order before the `RTI` instruction.  The ISR must end with the `RTI` instruction.  Enabling interrupts from inside the ISR is not recommended.
+
+## Peripherals
+The Demo CPU has no peripherals or instructions to access peripherals.  Peripherals must be mapped to specific addresses in such a way as to not conflict with each other or the stack pointer (mapped to `0x0800-0x08FF`).  These peripherals would then be accessed in software through `LD` and `ST` instructions to read and write data to and from the peripherals respectively.  At the bare minimum, RAM must be mapped to addreses `0x0800-0x08FF` to accommodate the stack, and a ROM must be mapped at least to address `0x0000` to accomodate the start of execution of the program.  If the program is a BIOS, then the entirety of the BIOS should fit within the first 2k of addressable memory, including the variables used by the BIOS.
+
 # Instruction Set
 Processor is Little-Endian and the results of all ALU operations are stored in the output register.  All ALU operations are done with the selected GPR as the A input and the accumulator as the B input.  This instruction set is incompatible with the restored version of the CPU, though some instructions will still work with it.
 
