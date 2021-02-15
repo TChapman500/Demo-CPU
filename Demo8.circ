@@ -2111,7 +2111,7 @@
       <circ-port height="8" pin="180,410" width="8" x="366" y="1226"/>
       <circ-port height="8" pin="180,650" width="8" x="366" y="1016"/>
       <circ-port height="8" pin="310,130" width="8" x="226" y="46"/>
-      <circ-port height="8" pin="310,160" width="8" x="216" y="46"/>
+      <circ-port height="8" pin="310,150" width="8" x="216" y="46"/>
       <rect fill="none" height="1260" stroke="#000000" stroke-width="2" width="320" x="50" y="50"/>
     </appear>
     <comp lib="1" loc="(150,340)" name="Pin">
@@ -2185,7 +2185,7 @@
     <comp lib="1" loc="(310,130)" name="Pin">
       <a name="label" val="CLK"/>
     </comp>
-    <comp lib="1" loc="(310,160)" name="Pin">
+    <comp lib="1" loc="(310,150)" name="Pin">
       <a name="label" val="CLR"/>
     </comp>
     <comp lib="1" loc="(340,660)" name="Splitter">
@@ -2482,9 +2482,6 @@
       <a name="facing" val="south"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="2" loc="(360,150)" name="OR Gate">
-      <a name="size" val="30"/>
-    </comp>
     <comp lib="2" loc="(360,630)" name="OR Gate">
       <a name="facing" val="south"/>
       <a name="size" val="30"/>
@@ -2546,7 +2543,7 @@ c50 18 c60 18 20130 8 40000 8
 4 0 40 4*0 c00 1a f0 10
 80130 4 100000 4 0 40 6*0 c00
 1a 10000000 10 10080000 34 100000 34 0
-40 6*0 c00 1a 0 90 12*0 c00
+40 6*0 c00 1a 0 50 12*0 c00
 1a 14*0 c00 1a 14*0 c00 1a 14*0
 c00 1a 14*0 c00 1a 142*0 c00 1a
 c50 18 c60 18 10c00 10 0 40
@@ -2655,7 +2652,7 @@ c00 1a 62000000 10 0 40 10*0 c00
     <wire from="(300,720)" to="(300,730)"/>
     <wire from="(300,720)" to="(320,720)"/>
     <wire from="(310,130)" to="(380,130)"/>
-    <wire from="(310,160)" to="(320,160)"/>
+    <wire from="(310,150)" to="(320,150)"/>
     <wire from="(310,340)" to="(310,480)"/>
     <wire from="(310,480)" to="(310,540)"/>
     <wire from="(310,480)" to="(480,480)"/>
@@ -2663,11 +2660,9 @@ c00 1a 62000000 10 0 40 10*0 c00
     <wire from="(310,540)" to="(480,540)"/>
     <wire from="(310,590)" to="(310,600)"/>
     <wire from="(310,590)" to="(350,590)"/>
-    <wire from="(320,110)" to="(320,140)"/>
-    <wire from="(320,110)" to="(890,110)"/>
-    <wire from="(320,140)" to="(330,140)"/>
-    <wire from="(320,160)" to="(320,400)"/>
-    <wire from="(320,160)" to="(330,160)"/>
+    <wire from="(320,140)" to="(320,150)"/>
+    <wire from="(320,140)" to="(380,140)"/>
+    <wire from="(320,150)" to="(320,400)"/>
     <wire from="(320,630)" to="(320,640)"/>
     <wire from="(320,640)" to="(330,640)"/>
     <wire from="(330,580)" to="(330,600)"/>
@@ -2677,15 +2672,12 @@ c00 1a 62000000 10 0 40 10*0 c00
     <wire from="(340,670)" to="(340,690)"/>
     <wire from="(340,670)" to="(400,670)"/>
     <wire from="(350,590)" to="(350,600)"/>
-    <wire from="(360,150)" to="(370,150)"/>
     <wire from="(360,470)" to="(360,530)"/>
     <wire from="(360,530)" to="(360,570)"/>
     <wire from="(360,530)" to="(430,530)"/>
     <wire from="(360,570)" to="(440,570)"/>
     <wire from="(360,630)" to="(360,640)"/>
     <wire from="(360,710)" to="(430,710)"/>
-    <wire from="(370,140)" to="(370,150)"/>
-    <wire from="(370,140)" to="(380,140)"/>
     <wire from="(370,470)" to="(370,520)"/>
     <wire from="(370,520)" to="(370,560)"/>
     <wire from="(370,520)" to="(430,520)"/>
@@ -2714,7 +2706,7 @@ c00 1a 62000000 10 0 40 10*0 c00
     <wire from="(520,490)" to="(540,490)"/>
     <wire from="(520,550)" to="(530,550)"/>
     <wire from="(530,550)" to="(530,580)"/>
-    <wire from="(540,130)" to="(900,130)"/>
+    <wire from="(540,130)" to="(890,130)"/>
     <wire from="(540,490)" to="(540,590)"/>
     <wire from="(690,760)" to="(700,760)"/>
     <wire from="(690,770)" to="(700,770)"/>
@@ -2759,9 +2751,7 @@ c00 1a 62000000 10 0 40 10*0 c00
     <wire from="(730,830)" to="(750,830)"/>
     <wire from="(730,850)" to="(750,850)"/>
     <wire from="(730,910)" to="(890,910)"/>
-    <wire from="(730,930)" to="(900,930)"/>
-    <wire from="(890,110)" to="(890,910)"/>
-    <wire from="(900,130)" to="(900,930)"/>
+    <wire from="(890,130)" to="(890,910)"/>
   </circuit>
   <circuit name="Stepper">
     <a name="appearance" val="custom"/>
