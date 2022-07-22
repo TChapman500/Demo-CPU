@@ -3,6 +3,8 @@ This is an enhanced version of my original CPU.  This enhancement adds stack man
 
 BIN files are raw binary files that can be loaded directly into RAM through the "Load Memory Image..." option.  HEX files hold the exact same data in text format so that it's easier to see what's in it.  ASM files hold a human-readable assembly code of said program.
 
+If you would like to support my work, you can do so through [Patreon](https://www.patreon.com/TChapman500), [SubscribeStar](https://www.subscribestar.com/tchapman500), or [PayPal](https://www.paypal.com/paypalme/tchapman500).
+
 # Architecture
 This is an 8-bit processor with an 8-bit data bus and a 16-bit address bus.  There are 5, 8-bit general purpose registers, 3, 8-bit specialty registers, and 5, 16-bit address registers.  Some of these registers overlap with other registers.  The processor is also little-endian.
 
