@@ -106,7 +106,7 @@
       <a name="line" val="dual"/>
     </tool>
   </lib>
-  <main name="Processor"/>
+  <main name="DemoCPU"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
     <a name="simlimit" val="50000"/>
@@ -160,7 +160,7 @@
       <a name="size" val="30"/>
     </tool>
   </toolbar>
-  <circuit name="Processor">
+  <circuit name="DemoCPU">
     <a name="appearance" val="custom"/>
     <a name="clabel" val="DemoCPU"/>
     <a name="clabelfont" val="SansSerif bold 20"/>
