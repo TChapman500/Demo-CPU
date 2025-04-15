@@ -110,6 +110,7 @@ This processor is Little-Endian and the results of all ALU operations are stored
 ## Instruction Table
 
 | -------- | xxxxx000         | xxxxx001         | xxxxx010         | xxxxx011         | xxxxx100          | xxxxx101         | xxxxx110         | xxxxx111          |
+| -------- | ---------------- | ---------------- | ---------------- | ---------------- | ----------------- | ---------------- | ---------------- | ----------------- |
 | 00000xxx | `NOP`            | `ISR imm16`      | `INT 0`          | `INT 1`          | `RTI`             | `CALL imm16`     | `RET`            | `PUSH flags`      |
 | 00001xxx | `POP flags`      | `LD adrl, imm8`  | `LD adrh, imm8`  | `LD adr, imm16`  | `LD adr, [imm16]` | `LD adr, [adr]`  | `POP adr`        | `ST [imm16], adr` |
 | 00010xxx | `ST [adr], adr`  | `PUSH adr`       | `HLT`            |                  |                   |                  |                  |                   |
