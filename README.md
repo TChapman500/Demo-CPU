@@ -106,3 +106,39 @@ This processor is Little-Endian and the results of all ALU operations are stored
 | `SHR rX` | Logical shift right of the specified GPR by the amount specified by the accumulator.  The result is stored in the output register. | `11101xxx` |
 | `SHL rX` | Logical shift left of the specified GPR by the amount specified by the accumulator.  The result is stored in the output register. | `11110xxx` |
 | `CMP rX` | Subtracts the accumulator and the carry flag from the specified GPR, setting the zero and carry flags and discarding the results.  | `11111xxx` |
+
+## Instruction Table
+
+| -------- | xxxxx000         | xxxxx001         | xxxxx010         | xxxxx011         | xxxxx100          | xxxxx101         | xxxxx110         | xxxxx111          |
+| 00000xxx | `NOP`            | `ISR imm16`      | `INT 0`          | `INT 1`          | `RTI`             | `CALL imm16`     | `RET`            | `PUSH flags`      |
+| 00001xxx | `POP flags`      | `LD adrl, imm8`  | `LD adrh, imm8`  | `LD adr, imm16`  | `LD adr, [imm16]` | `LD adr, [adr]`  | `POP adr`        | `ST [imm16], adr` |
+| 00010xxx | `ST [adr], adr`  | `PUSH adr`       | `HLT`            |                  |                   |                  |                  |                   |
+| 00011xxx | `JMP imm16`      | `JNE/JNZ imm16`  | `JE/JZ imm16`    | `JL/JC imm16`    | `JNL/JNC imm16`   | `JG imm16`       | `JNG imm16`      |                   |
+| 00100xxx | `LD r0, imm8`    | `LD r1, imm8`    | `LD r2, imm8`    | `LD r3, imm8`    | `LD r4, imm8`     | `LD r5, imm8`    | `LD r6, imm8`    | `LD r7, imm8`     |
+| 00101xxx | `LD r0, [imm16]` | `LD r1, [imm16]` | `LD r2, [imm16]` | `LD r3, [imm16]` | `LD r4, [imm16]`  | `LD r5, [imm16]` | `LD r6, [imm16]` | `LD r7, [imm16]`  |
+| 00110xxx | `LD r0, [adr]`   | `LD r1, [adr]`   | `LD r2, [adr]`   | `LD r3, [adr]`   | `LD r4, [adr]`    | `LD r5, [adr]`   | `LD r6, [adr]`   | `LD r7, [adr]`    |
+| 00111xxx | `POP r0`         | `POP r1`         | `POP r2`         | `POP r3`         | `POP r4`          | `POP r5`         | `POP r6`         | `POP r7`          |
+| 01000xxx | `ST [imm16], r0` | `ST [imm16], r1` | `ST [imm16], r2` | `ST [imm16], r3` | `ST [imm16], r4`  | `ST [imm16], r5` | `ST [imm16], r6` | `ST [imm16], r7`  |
+| 01001xxx | `ST [adr], r0`   | `ST [adr], r1`   | `ST [adr], r2`   | `ST [adr], r3`   | `ST [adr], r4`    | `ST [adr], r5`   | `ST [adr], r6`   | `ST [adr], r7`    |
+| 01010xxx | `PUSH r0`        | `PUSH r1`        | `PUSH r2`        | `PUSH r3`        | `PUSH r4`         | `PUSH r5`        | `PUSH r6`        | `PUSH r7`         |
+| 01011xxx | `MOV acc, r0`    | `MOV acc, r1`    | `MOV acc, r2`    | `MOV acc, r3`    | `MOV acc, r4`     | `MOV acc, r5`    | `MOV acc, r6`    | `MOV acc, r7`     |
+| 01100xxx | `MOV r0, out`    | `MOV r1, out`    | `MOV r2, out`    | `MOV r3, out`    | `MOV r4, out`     | `MOV r5, out`    | `MOV r6, out`    | `MOV r7, out`     |
+| 01101xxx | `MOV r0, adrl`   | `MOV r1, adrl`   | `MOV r2, adrl`   | `MOV r3, adrl`   | `MOV r4, adrl`    | `MOV r5, adrl`   | `MOV r6, adrl`   | `MOV r7, adrl`    |
+| 01110xxx | `MOV r0, adrh`   | `MOV r1, adrh`   | `MOV r2, adrh`   | `MOV r3, adrh`   | `MOV r4, adrh`    | `MOV r5, adrh`   | `MOV r6, adrh`   | `MOV r7, adrh`    |
+| 01111xxx | `MOV adrl, r0`   | `MOV adrl, r1`   | `MOV adrl, r2`   | `MOV adrl, r3`   | `MOV adrl, r4`    | `MOV adrl, r5`   | `MOV adrl, r6`   | `MOV adrl, r7`    |
+| 10000xxx | `MOV adrh, r0`   | `MOV adrh, r1`   | `MOV adrh, r2`   | `MOV adrh, r3`   | `MOV adrh, r4`    | `MOV adrh, r5`   | `MOV adrh, r6`   | `MOV adrh, r7`    |
+| 10001xxx |                  |                  |                  |                  |                   |                  |                  |                   |
+| 10010xxx | `ADC r0`         | `ADC r1`         | `ADC r2`         | `ADC r3`         | `ADC r4`          | `ADC r5`         | `ADC r6`         | `ADC r7`          |
+| 10011xxx | `ADD r0`         | `ADD r1`         | `ADD r2`         | `ADD r3`         | `ADD r4`          | `ADD r5`         | `ADD r6`         | `ADD r7`          |
+| 10100xxx | `SUB r0`         | `SUB r1`         | `SUB r2`         | `SUB r3`         | `SUB r4`          | `SUB r5`         | `SUB r6`         | `SUB r7`          |
+| 10101xxx | `NEG r0`         | `NEG r1`         | `NEG r2`         | `NEG r3`         | `NEG r4`          | `NEG r5`         | `NEG r6`         | `NEG r7`          |
+| 10110xxx | `INC r0`         | `INC r1`         | `INC r2`         | `INC r3`         | `INC r4`          | `INC r5`         | `INC r6`         | `INC r7`          |
+| 10111xxx | `DEC r0`         | `DEC r1`         | `DEC r2`         | `DEC r3`         | `DEC r4`          | `DEC r5`         | `DEC r6`         | `DEC r7`          |
+| 11000xxx | `TEST r0`        | `TEST r1`        | `TEST r2`        | `TEST r3`        | `TEST r4`         | `TEST r5`        | `TEST r6`        | `TEST r7`         |
+| 11001xxx | `AND r0`         | `AND r1`         | `AND r2`         | `AND r3`         | `AND r4`          | `AND r5`         | `AND r6`         | `AND r7`          |
+| 11010xxx | `OR r0`          | `OR r1`          | `OR r2`          | `OR r3`          | `OR r4`           | `OR r5`          | `OR r6`          | `OR r7`           |
+| 11011xxx | `NOT r0`         | `NOT r1`         | `NOT r2`         | `NOT r3`         | `NOT r4`          | `NOT r5`         | `NOT r6`         | `NOT r7`          |
+| 11100xxx | `XOR r0`         | `XOR r1`         | `XOR r2`         | `XOR r3`         | `XOR r4`          | `XOR r5`         | `XOR r6`         | `XOR r7`          |
+| 11101xxx | `SHR r0`         | `SHR r1`         | `SHR r2`         | `SHR r3`         | `SHR r4`          | `SHR r5`         | `SHR r6`         | `SHR r7`          |
+| 11110xxx | `SHL r0`         | `SHL r1`         | `SHL r2`         | `SHL r3`         | `SHL r4`          | `SHL r5`         | `SHL r6`         | `SHL r7`          |
+| 11111xxx | `CMP r0`         | `CMP r1`         | `CMP r2`         | `CMP r3`         | `CMP r4`          | `CMP r5`         | `CMP r6`         | `CMP r7`          |
