@@ -107,9 +107,9 @@ This processor is Little-Endian and the results of all ALU operations are stored
 | `SHL rX` | Logical shift left of the specified GPR by the amount specified by the accumulator.  The result is stored in the output register. | `11110xxx` |
 | `CMP rX` | Subtracts the accumulator and the carry flag from the specified GPR, setting the zero and carry flags and discarding the results.  | `11111xxx` |
 
-## Instruction Table
+## Instruction Matrix
 
-| -------- | xxxxx000         | xxxxx001         | xxxxx010         | xxxxx011         | xxxxx100          | xxxxx101         | xxxxx110         | xxxxx111          |
+|          | xxxxx000         | xxxxx001         | xxxxx010         | xxxxx011         | xxxxx100          | xxxxx101         | xxxxx110         | xxxxx111          |
 | -------- | ---------------- | ---------------- | ---------------- | ---------------- | ----------------- | ---------------- | ---------------- | ----------------- |
 | 00000xxx | `NOP`            | `ISR imm16`      | `INT 0`          | `INT 1`          | `RTI`             | `CALL imm16`     | `RET`            | `PUSH flags`      |
 | 00001xxx | `POP flags`      | `LD adrl, imm8`  | `LD adrh, imm8`  | `LD adr, imm16`  | `LD adr, [imm16]` | `LD adr, [adr]`  | `POP adr`        | `ST [imm16], adr` |
