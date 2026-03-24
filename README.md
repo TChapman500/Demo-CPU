@@ -143,3 +143,7 @@ This processor is Little-Endian and the results of all ALU operations are stored
 | 11101xxx | `SHR r0`         | `SHR r1`         | `SHR r2`         | `SHR r3`         | `SHR r4`          | `SHR r5`         | `SHR r6`         | `SHR r7`          |
 | 11110xxx | `SHL r0`         | `SHL r1`         | `SHL r2`         | `SHL r3`         | `SHL r4`          | `SHL r5`         | `SHL r6`         | `SHL r7`          |
 | 11111xxx | `CMP r0`         | `CMP r1`         | `CMP r2`         | `CMP r3`         | `CMP r4`          | `CMP r5`         | `CMP r6`         | `CMP r7`          |
+
+## Links
+
+[![Hypercommit](https://img.shields.io/badge/Hypercommit-DB2475)](https://hypercommit.com/demo-cpu)
